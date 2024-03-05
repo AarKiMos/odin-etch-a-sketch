@@ -65,12 +65,13 @@ h6 {
 /* -------------------------------------------- */
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+  height: 100vh;
 }
 
 header {
+  height: 10vh;
   border-bottom: 1px solid black;
 
   display: flex;
@@ -89,16 +90,26 @@ header {
 }
 
 main {
-  flex-grow: 1;
+  height: 83vh;
+  /* flex-grow: 1; */
   display: flex;
 }
 
 #sketch-container {
   border-right: 1px solid black;
   width: 70vw;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sketch-box {
+  border: 1px solid black;
+  gap: 1px;
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  padding: 1px;
 }
 
 .row {
@@ -108,10 +119,14 @@ main {
 }
 
 .pixel {
-  border: 1px solid green;
+  border: 1px solid black;
+}
+.pixel-fill {
+  background-color: aqua;
 }
 
 #sketch-controls {
+  width: 30vw;
 }
 
 footer {
