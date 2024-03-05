@@ -120,6 +120,7 @@ main {
 
 .pixel {
   border: 1px solid black;
+  cursor: url("./images/brush.png") 0 24, pointer;
 }
 .pixel-fill {
   background-color: aqua;
