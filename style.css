@@ -123,11 +123,15 @@ main {
   cursor: url("./images/brush.png") 0 24, pointer;
 }
 .pixel-fill {
-  background-color: aqua;
+  background-color: black;
 }
 
 #sketch-controls {
   width: 30vw;
+}
+
+#size-prompt-btn {
+  margin: 8px;
 }
 
 footer {
