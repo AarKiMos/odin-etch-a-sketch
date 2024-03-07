@@ -1,17 +1,19 @@
-function handleResize(gridSize) {
+function calcAndSetPixelSize() {
   let maxLength = Math.min(
     sketchContainer.clientWidth,
     sketchContainer.clientHeight
   );
 
   maxLength -= 8; // Subtract padding
-  let pixelSize = (maxLength - (gridSize + 1) * 1) / gridSize;
+  let pixelSize = Math.floor((maxLength - (gridSize + 1) * 1) / gridSize);
   pixelSizeStyle.innerHTML = `.pixel-size { width: ${pixelSize}px; height: ${pixelSize}px; }`;
 }
 
-function createGrid(gridSize) {
+function createGrid() {
   let sketchBox = document.createElement("div");
   sketchBox.classList.add("sketch-box");
+
+  calcAndSetPixelSize();
 
   for (let i = 0; i < gridSize; i++) {
     let row = document.createElement("div");
@@ -33,17 +35,28 @@ function createGrid(gridSize) {
   return sketchBox;
 }
 
-const gridSize = 40;
+let gridSize = 16;
 const sketchContainer = document.getElementById("sketch-container");
 
 window.addEventListener("resize", (e) => {
-  handleResize(gridSize);
+  calcAndSetPixelSize();
 });
 
 let pixelSizeStyle = document.createElement("style");
 pixelSizeStyle.type = "text/css";
 document.getElementsByTagName("head")[0].appendChild(pixelSizeStyle);
 
-handleResize(gridSize);
-
 sketchContainer.appendChild(createGrid(gridSize));
+
+const sizeButton = document.getElementById("size-prompt-btn");
+sizeButton.addEventListener("click", (e) => {
+  let newSize = Number(prompt("Enter size of grid. Min 10, Max 100"));
+  if (isNaN(newSize) || newSize < 10 || newSize > 100) {
+    alert("Invalid input!!");
+    return;
+  }
+
+  gridSize = newSize;
+  sketchContainer.removeChild(sketchContainer.firstChild);
+  sketchContainer.appendChild(createGrid(gridSize));
+});
